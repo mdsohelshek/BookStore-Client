@@ -21,7 +21,7 @@ function Login() {
       password: data.password,
     };
     await axios
-      .post("http://localhost:4001/user/login", userInfo,{ withCredentials: true })
+      .post("https://book-store-server-teal.vercel.app/user/login", userInfo,{ withCredentials: true })
       .then((res) => {
         if (res.data) {
           toast.success("Loggedin Successfully");

@@ -8,7 +8,7 @@ function Logout() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      const res = await axios.post('http://localhost:4001/user/logout', {}, { withCredentials: true });
+      const res = await axios.post('https://book-store-server-teal.vercel.app/user/logout', {}, { withCredentials: true });
       console.log(res.data);
       if (res.data.message === 'Logged out successfully') {
         toast.success("Logged out successfully");

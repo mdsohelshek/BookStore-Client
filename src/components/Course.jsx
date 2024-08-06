@@ -17,7 +17,7 @@ function Course() {
     const getBook = async () => {
       try {
         // Ensure withCredentials is set to true to include cookies in requests
-        const res = await axios.get("http://localhost:4001/book", { withCredentials: true });
+        const res = await axios.get("https://book-store-server-teal.vercel.app/book", { withCredentials: true });
 
         if (res.status === 401) {
           navigate("/login");
