@@ -4,11 +4,12 @@ import toast from "react-hot-toast";
 import Cookie from "js-cookie"
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Backend_URL } from "../../url";
 function Logout() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      const res = await axios.post('https://book-store-server-teal.vercel.app/user/logout', {}, { withCredentials: true });
+      const res = await axios.post(`${Backend_URL}/user/logout`, {}, { withCredentials: true });
       console.log(res.data);
       if (res.data.message === 'Logged out successfully') {
         toast.success("Logged out successfully");

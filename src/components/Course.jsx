@@ -6,7 +6,8 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { Link, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
-
+import dotenv from "dotenv"
+import { Backend_URL } from "../../url";
 function Course() {
   const navigate = useNavigate();
   const [book, setBook] = useState([]);
@@ -16,8 +17,7 @@ function Course() {
   useEffect(() => {
     const getBook = async () => {
       try {
-        // Ensure withCredentials is set to true to include cookies in requests
-        const res = await axios.get("https://book-store-server-teal.vercel.app/book", { withCredentials: true });
+        const res = await axios.get(`${Backend_URL}/book`, { withCredentials: true });
 
         if (res.status === 401) {
           navigate("/login");

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import cookies from "js-cookie"
+import { Backend_URL } from "../../url";
 function Login() {
   const location = useLocation();
 
@@ -21,7 +22,7 @@ function Login() {
       password: data.password,
     };
     await axios
-      .post("https://book-store-server-teal.vercel.app/user/login", userInfo,{ withCredentials: true })
+      .post(`${Backend_URL}/user/login`, userInfo,{ withCredentials: true })
       .then((res) => {
         if (res.data) {
           toast.success("Loggedin Successfully");
