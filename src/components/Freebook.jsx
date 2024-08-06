@@ -12,9 +12,6 @@ function Freebook() {
     const getBook = async () => {
       try {
         const res = await axios.get(`${Backend_URL}/book/free`,{withCredentials:true});
-        // console.log(res);
-        // const data = res.data.filter((data) => data.category === "Free");
-        // console.log(data);
         setBook(res.data);
       } catch (error) {
         console.log(error);
