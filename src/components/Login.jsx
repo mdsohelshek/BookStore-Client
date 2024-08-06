@@ -1,9 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import cookies from "js-cookie"
 function Login() {
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -16,19 +21,17 @@ function Login() {
       password: data.password,
     };
     await axios
-      .post("https://bookstore-server-lt43.onrender.com/user/login", userInfo)
+      .post("http://localhost:4001/user/login", userInfo,{ withCredentials: true })
       .then((res) => {
-        console.log(res.data);
         if (res.data) {
           toast.success("Loggedin Successfully");
           document.getElementById("my_modal_3").close();
           setTimeout(() => {
+            localStorage.setItem("user", true);
             window.location.reload();
-            localStorage.setItem("Users", JSON.stringify(res.data.user));
           }, 1000);
         }
       })
-      
       .catch((err) => {
         if (err.response) {
           console.log(err);
@@ -50,6 +53,7 @@ function Login() {
             >
               ✕
             </Link>
+
             <h3 className="font-bold text-lg">Login</h3>
             {/* Email */}
             <div className="mt-4 space-y-2">

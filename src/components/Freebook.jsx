@@ -3,21 +3,18 @@ import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
 import axios from "axios";
-
 import Cards from "./Cards";
 function Freebook() {
   const [book, setBook] = useState([]);
   useEffect(() => {
     const getBook = async () => {
       try {
-        const res = await axios.get("https://bookstore-server-lt43.onrender.com/book");
-
-        
-        const data = res.data.filter((data) => data.category === "Free");
-        console.log(data);
-        setBook(data);
+        const res = await axios.get("http://localhost:4001/book/free",{withCredentials:true});
+        // console.log(res);
+        // const data = res.data.filter((data) => data.category === "Free");
+        // console.log(data);
+        setBook(res.data);
       } catch (error) {
         console.log(error);
       }

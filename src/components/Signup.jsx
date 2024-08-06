@@ -21,17 +21,17 @@ function Signup() {
       password: data.password,
     };
     await axios
-      .post("https://bookstore-server-lt43.onrender.com/user/signup", userInfo)
+      .post("http://localhost:4001/user/signup", userInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data) {
           toast.success("Signup Successfully");
           navigate(from, { replace: true });
-          setTimeout(() => {
-            window.location.reload();
-            localStorage.setItem("Users", JSON.stringify(res.data.user));
-          }, 1000);
         }
+        setTimeout(() => {
+          window.location.reload();
+          localStorage.setItem("Users", JSON.stringify(res.data.user));
+        }, 1000);
         // localStorage.setItem("Users", JSON.stringify(res.data.user));
       })
       .catch((err) => {
